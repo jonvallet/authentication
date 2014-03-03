@@ -17,7 +17,9 @@ public class Login {
     @POST
     public void login(String user, String password){
 
+        Users users = new FilePersister("no-hash-users.properties").loadUsers();
 
+        if (users.checkUserPassword(user,password))
 
         throw new WebApplicationException(HttpURLConnection.HTTP_FORBIDDEN);
     }

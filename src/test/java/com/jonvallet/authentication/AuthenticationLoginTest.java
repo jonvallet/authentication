@@ -12,6 +12,7 @@ public class AuthenticationLoginTest {
 
     public static final String USER = "jon";
     public static final String PASSWORD = "08091978";
+    public static final String USER_TEST_PROPERTIES = "user_test.properties";
 
     @Test
     public void testCheckUserPasswordCorrectReturnsTrue(){
@@ -40,11 +41,11 @@ public class AuthenticationLoginTest {
 
         Users users = new Users();
         users.addUser(USER,PASSWORD);
-        Persister persisterFirstInstance = new FilePersister();
+        Persister persisterFirstInstance = new FilePersister(USER_TEST_PROPERTIES);
 
         persisterFirstInstance.persistUsers(users);
 
-        Persister persisterSecondInstance = new FilePersister();
+        Persister persisterSecondInstance = new FilePersister(USER_TEST_PROPERTIES);
 
         Users usersSecondInstance = persisterSecondInstance.loadUsers();
 
