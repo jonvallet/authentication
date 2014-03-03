@@ -1,6 +1,7 @@
 package com.jonvallet.authentication;
 
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 
 /**
@@ -11,7 +12,12 @@ public class Login {
 
     @GET
     public String login (){
-        return "Login service is up.";
+        return "Service is up.";
+    }
+
+    @POST
+    public boolean login(String user, String password){
+        return false;
     }
 
 }
