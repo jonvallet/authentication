@@ -38,3 +38,5 @@ cargo {
         hostname = 'localhost'
     }
 }
+
+cargoRedeployRemote {}.dependsOn assemble
