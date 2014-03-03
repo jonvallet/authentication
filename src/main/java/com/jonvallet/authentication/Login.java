@@ -1,7 +1,9 @@
 package com.jonvallet.authentication;
 
 import javax.ws.rs.*;
-import java.net.HttpURLConnection;
+import javax.ws.rs.core.Response;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 /**
  * Created by jvalletw on 28/02/14.
@@ -17,17 +19,18 @@ public class Login {
 
     @POST
     @Path("/no-hash")
-    public void login(@FormParam("user") String user,@FormParam("password") String password){
+    public Response login(@FormParam("user") String user,@FormParam("password") String password) throws URISyntaxException {
 
         System.out.println("Trying to check user :"+user);
 
         Users users = new FilePersister("no-hash-users.properties").loadUsers();
 
+
         if (!users.checkUserPassword(user,password)){
-            throw new WebApplicationException(HttpURLConnection.HTTP_FORBIDDEN);
+            return Response.status(Response.Status.FORBIDDEN).entity("Forbidden 403").build();
         }
 
-
+        return Response.ok("Login successfull").build();
 
     }
 
