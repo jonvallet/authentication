@@ -13,7 +13,8 @@ public class Users{
         users.put(username, password);
     }
 
-    public boolean checkUserPassword(String username, String password) {
+    public boolean checkUserPassword(String username,
+                                     String password) {
 
         String storedPassword = users.getProperty(username);
 

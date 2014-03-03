@@ -11,17 +11,24 @@ public class Login {
 
     @GET
     public String login (){
-        return "Service is up.";
+        System.out.println("Service is up");
+        return "Service is up!.";
     }
 
     @POST
-    public void login(String user, String password){
+    @Path("/no-hash")
+    public void login(@FormParam("user") String user,@FormParam("password") String password){
+
+        System.out.println("Trying to check user :"+user);
 
         Users users = new FilePersister("no-hash-users.properties").loadUsers();
 
-        if (users.checkUserPassword(user,password))
+        if (!users.checkUserPassword(user,password)){
+            throw new WebApplicationException(HttpURLConnection.HTTP_FORBIDDEN);
+        }
 
-        throw new WebApplicationException(HttpURLConnection.HTTP_FORBIDDEN);
+
+
     }
 
 }

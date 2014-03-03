@@ -32,10 +32,21 @@ public class FilePersister implements Persister {
 
         Users users = null;
 
+
         try {
-            FileInputStream fileInputStream = new FileInputStream(usersFile);
+            InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(usersFile);
+
             users = new Users();
-            users.users.load(fileInputStream);
+            if (inputStream != null){
+                users.users.load(inputStream);
+                inputStream.close();
+            }else {
+                FileInputStream fileInputStream = new FileInputStream(usersFile);
+                users.users.load(fileInputStream);
+                fileInputStream.close();
+            }
+
+
 
         } catch (Exception e) {
             throw new RuntimeException(e);
