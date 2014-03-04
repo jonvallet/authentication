@@ -1,7 +1,9 @@
 package com.jonvallet.authentication;
 
-import javax.ws.rs.*;
-import javax.ws.rs.core.Response;
+import javax.ws.rs.FormParam;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
 import java.net.URISyntaxException;
 
 /**
@@ -9,6 +11,9 @@ import java.net.URISyntaxException;
  */
 @Path("/login")
 public class Login {
+
+    public static final String FORBIDDEN_403 = "Forbidden 403.";
+    public static final String LOGIN_SUCCESSFUL = "Login successful.";
 
     @GET
     public String login (){
@@ -18,19 +23,36 @@ public class Login {
 
     @POST
     @Path("/no-hash")
-    public Response login(@FormParam("user") String user,@FormParam("password") String password) throws URISyntaxException {
+    public String login(@FormParam("user") String user,@FormParam("password") String password) throws URISyntaxException {
 
-        System.out.println("Trying to check user :"+user);
 
         Users users = new FilePersister("no-hash-users.properties").loadUsers();
 
-
-        if (!users.checkUserPassword(user,password)){
-            return Response.status(Response.Status.FORBIDDEN).entity("Forbidden 403").build();
-        }
-
-        return Response.ok("Login successfull").build();
+        return getResponse(user, password, users);
 
     }
+
+    @POST
+    @Path("/sha2")
+    public String login_sha2(@FormParam("user") String user,@FormParam("password") String password) throws URISyntaxException {
+
+        Users users = new FilePersister("no-hash-users.properties").loadUsers();
+
+        Hasher hasher = new Hasher();
+
+        return getResponse(user, hasher.hashSha_2(password), users);
+
+    }
+
+
+    private String getResponse(String user, String password, Users users) {
+
+        if (!users.checkUserPassword(user,password)){
+            return FORBIDDEN_403;
+        }
+
+        return LOGIN_SUCCESSFUL;
+    }
+
 
 }

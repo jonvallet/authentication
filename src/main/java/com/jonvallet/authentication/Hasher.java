@@ -24,6 +24,6 @@ public class Hasher {
         byte [] passHash = sha_2.digest(passBytes);
 
 
-        return DatatypeConverter.printHexBinary(passHash);
+        return DatatypeConverter.printHexBinary(passHash).toUpperCase();
     }
 }
