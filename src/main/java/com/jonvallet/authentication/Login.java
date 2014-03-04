@@ -44,6 +44,18 @@ public class Login {
 
     }
 
+    @POST
+    @Path("/sha2-salted")
+    public String login_sha2Salted(@FormParam("user") String user,@FormParam("password") String password) throws URISyntaxException {
+
+        Users users = new FilePersister("sha_2_user_salted.properties").loadUsers();
+
+        Hasher hasher = new Hasher();
+
+        return getResponse(user, hasher.hashSha_2(password+users.getSalt(user)), users);
+
+    }
+
 
     private String getResponse(String user, String password, Users users) {
 

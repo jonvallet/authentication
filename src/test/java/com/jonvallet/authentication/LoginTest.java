@@ -25,4 +25,13 @@ public class LoginTest {
         Assert.assertEquals(Login.LOGIN_SUCCESSFUL, response);
 
     }
+
+    @Test
+    public void testSha2HashSalted() throws Exception{
+
+        String response = new Login().login_sha2Salted("jon", "08091978");
+
+        Assert.assertEquals(Login.LOGIN_SUCCESSFUL, response);
+
+    }
 }

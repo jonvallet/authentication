@@ -3,11 +3,14 @@ package com.jonvallet.authentication;
 import javax.xml.bind.DatatypeConverter;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 
 /**
  * Created by jvalletw on 4/03/14.
  */
 public class Hasher {
+
+    SecureRandom random = new SecureRandom();
 
     public String hashSha_2(String password) {
 
@@ -25,5 +28,10 @@ public class Hasher {
 
 
         return DatatypeConverter.printHexBinary(passHash).toUpperCase();
+    }
+
+    public String getRandomSalt(){
+        String result = String.valueOf(random.nextLong());
+        return result;
     }
 }

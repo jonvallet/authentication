@@ -7,6 +7,7 @@ import java.util.Properties;
  */
 public class Users{
 
+    public static final String SALT = ".salt";
     public Properties users = new Properties();
 
     public void addUser(String username, String password) {
@@ -23,4 +24,14 @@ public class Users{
         return userOk;
     }
 
+    public void addSalt(String user, String salt) {
+
+        users.put(user+SALT, salt);
+
+    }
+
+    public String getSalt(String user) {
+
+        return (String) users.get(user+SALT);
+    }
 }
