@@ -2,7 +2,6 @@ package com.jonvallet.authentication;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
-import java.net.URI;
 import java.net.URISyntaxException;
 
 /**

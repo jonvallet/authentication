@@ -51,7 +51,6 @@ public class AuthenticationLoginTest {
 
         Assert.assertTrue(usersSecondInstance.checkUserPassword(USER,PASSWORD));
 
-
     }
 
 }
