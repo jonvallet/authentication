@@ -36,7 +36,7 @@ public class Login {
     @Path("/sha2")
     public String login_sha2(@FormParam("user") String user,@FormParam("password") String password) throws URISyntaxException {
 
-        Users users = new FilePersister("no-hash-users.properties").loadUsers();
+        Users users = new FilePersister("sha_2_user.properties").loadUsers();
 
         Hasher hasher = new Hasher();
 

@@ -16,6 +16,8 @@ public class CreateSHA_2Examples {
         users.addUser("jon",hasher.hashSha_2("08091978"));
         users.addUser("admin",hasher.hashSha_2("adminadmin"));
         users.addUser("tiger",hasher.hashSha_2("scott"));
+        users.addUser("system",hasher.hashSha_2("oraclepass"));
+        users.addUser("sys",hasher.hashSha_2("oraclepass"));
         Persister persister = new FilePersister("sha_2_user.properties");
         persister.persistUsers(users);
 
