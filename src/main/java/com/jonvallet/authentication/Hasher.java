@@ -34,4 +34,13 @@ public class Hasher {
         String result = String.valueOf(random.nextLong());
         return result;
     }
+
+    public String hashSha_2(String password, int reruns){
+        String hash= password;
+        for (int i = 0; i < reruns; i++){
+            hash = hashSha_2(hash);
+        }
+
+        return hash;
+    }
 }

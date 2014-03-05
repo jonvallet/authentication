@@ -14,6 +14,7 @@ public class Login {
 
     public static final String FORBIDDEN_403 = "Forbidden 403.";
     public static final String LOGIN_SUCCESSFUL = "Login successful.";
+    public static final int HASH_RERUNS = 1000000;
 
     @GET
     public String login (){
@@ -53,6 +54,18 @@ public class Login {
         Hasher hasher = new Hasher();
 
         return getResponse(user, hasher.hashSha_2(password+users.getSalt(user)), users);
+
+    }
+
+    @POST
+    @Path("/sha2-slow-salted")
+    public String login_sha2SlowSalted(@FormParam("user") String user,@FormParam("password") String password) throws URISyntaxException {
+
+        Users users = new FilePersister("sha_2_slow_user_salted.properties").loadUsers();
+
+        Hasher hasher = new Hasher();
+
+        return getResponse(user, hasher.hashSha_2(password+users.getSalt(user), Login.HASH_RERUNS), users);
 
     }
 
