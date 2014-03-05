@@ -13,7 +13,7 @@ public class CreateSHA_2Examples {
         Users users = new Users();
         Hasher hasher = new Hasher();
 
-        users.addUser("jon",hasher.hashSha_2("08091978"));
+        users.addUser("jon",hasher.hashSha_2("08474517"));
         users.addUser("admin",hasher.hashSha_2("adminadmin"));
         users.addUser("tiger",hasher.hashSha_2("scott"));
         users.addUser("system",hasher.hashSha_2("oraclepass"));

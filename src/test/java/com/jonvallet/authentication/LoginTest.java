@@ -20,7 +20,7 @@ public class LoginTest {
     @Test
     public void testSha2Hash() throws Exception{
 
-        String response = new Login().login_sha2("jon", "08091978");
+        String response = new Login().login_sha2("jon", "08474517");
 
         Assert.assertEquals(Login.LOGIN_SUCCESSFUL, response);
 
@@ -29,7 +29,7 @@ public class LoginTest {
     @Test
     public void testSha2HashSalted() throws Exception{
 
-        String response = new Login().login_sha2Salted("jon", "08091978");
+        String response = new Login().login_sha2Salted("jon", "08699771");
 
         Assert.assertEquals(Login.LOGIN_SUCCESSFUL, response);
 

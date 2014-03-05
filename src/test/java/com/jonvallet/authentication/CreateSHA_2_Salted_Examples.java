@@ -14,7 +14,7 @@ public class CreateSHA_2_Salted_Examples {
         Hasher hasher = new Hasher();
 
 
-        addUsersSalted("jon","08091978", users, hasher);
+        addUsersSalted("jon","08699771", users, hasher);
         addUsersSalted("admin","adminadmin", users, hasher);
         addUsersSalted("tiger","scott", users, hasher);
         addUsersSalted("system","oraclepass", users, hasher);
