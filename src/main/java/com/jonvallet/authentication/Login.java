@@ -46,6 +46,16 @@ public class Login {
     }
 
     @POST
+    @Path("/sha2-client-salted")
+    public String login_sha2_client_salted(@FormParam("user") String user,@FormParam("password") String password) throws URISyntaxException {
+
+        Users users = new FilePersister("sha_2_user.properties").loadUsers();
+
+        return getResponse(user, password.toUpperCase(), users);
+
+    }
+
+    @POST
     @Path("/sha2-salted")
     public String login_sha2Salted(@FormParam("user") String user,@FormParam("password") String password) throws URISyntaxException {
 
