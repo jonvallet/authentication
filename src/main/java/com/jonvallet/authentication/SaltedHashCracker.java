@@ -27,6 +27,7 @@ public class SaltedHashCracker {
             calculatedHash = hasher.hashSha_2(testUser+salt);
             i++;
         }while (!hashToBreak.equals(calculatedHash));
+        
         Date date2 = new Date();
         date2.setTime(date2.getTime()-date.getTime());
         System.out.println("User found: "+testUser +" in " +date2.getTime()/1000+" seconds");
